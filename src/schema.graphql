@@ -1,0 +1,65 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type EqualUser {
+  User_ID: Float!
+  Face_img: String
+  Name: String!
+  Address: String!
+  Birthday: DateTime!
+  Mail: String!
+  Pass: String!
+  Age: Float!
+  Job: String
+  Hobby: String
+  Intro: String
+  SID: Float
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type MatchingChatInput {
+  Matching_Talk_ID: Float
+  Matching_ID: Float!
+  Matching_Talk_Content: String!
+  User_ID: Float!
+}
+
+type Community {
+  Community_ID: Float!
+  Community_Name: String!
+}
+
+type Groups {
+  Group_ID: Float!
+  Community_ID: Float!
+  Group_Name: String!
+  User_ID: Float!
+  Group_Create_Date: DateTime!
+  Limit_Num: Float!
+}
+
+type GroupChatInput {
+  User_ID: Float!
+  Group_Talk_Contet: String!
+}
+
+type Query {
+  EqualUser: [EqualUser!]!
+  getUser(User_ID: Float!): EqualUser!
+  getAllCommunity: [Community!]!
+  getGroups(Community_ID: Float!): [Groups!]!
+}
+
+type Mutation {
+  sendMessage(Matching_ID: Float!, Matching_Talk_Content: String!, User_ID: Float!): MatchingChatInput!
+  sendGroupMessage(Group_Talk_Contet: String!, User_ID: Float!, Group_ID: Float!): GroupChatInput!
+}
+
+type Subscription {
+  messageSent: GroupChatInput!
+}
